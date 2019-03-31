@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class gameMaster : MonoBehaviour {
 
     public float coins ;
-    public Text countText;
+    public Text goldText;
+    public Text upgradeText;
     public float goldMultiplyser = 1;
+    float priceOfUpgrade = 20; 
 
     public void onclickMonster()
     {
@@ -25,19 +27,23 @@ public class gameMaster : MonoBehaviour {
 
     public void goldUpgrade()
     {
-        if(coins >= 10)
+        
+        if(coins >= priceOfUpgrade)
         {
-            print("buy");
-            coins = coins - 10;
+            coins = coins - priceOfUpgrade;
             setCountText();
             goldMultiplyser = goldMultiplyser * 2;
+            priceOfUpgrade = priceOfUpgrade * 4;
+            setCountText();
         }
-        print("pressed");
-
+        
     }
 
     void setCountText()
     {
-        countText.text = "Gold x " + coins.ToString();
+        goldText.text = "Gold x " + coins.ToString();
+        upgradeText.text = "Gold-Boost X2 \n" + "Price " + priceOfUpgrade.ToString() + " Gold";
     }
 }
+
+

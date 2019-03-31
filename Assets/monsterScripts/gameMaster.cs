@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameMaster : MonoBehaviour {
 
-    public float coins ;
+    public float coins;
     public Text goldText;
     public Text upgradeText;
     public float goldMultiplyser = 1;
-    float priceOfUpgrade = 20; 
+    float priceOfUpgrade = 20;
+    public GameObject gameOverUI1M;
+    public GameObject gameOverUI50M;
 
     public void onclickMonster()
     {
@@ -35,8 +38,32 @@ public class gameMaster : MonoBehaviour {
             goldMultiplyser = goldMultiplyser * 2;
             priceOfUpgrade = priceOfUpgrade * 4;
             setCountText();
-        }
+        } 
+    }
+
+
+    public void winGameButton1M()
+    {
         
+        if(coins >= 1000000f)
+        {
+            gameOverUI1M.SetActive(true);
+        }
+    }
+
+
+    public void winGameButton50M()
+    {
+        if (coins >= 9999999f)
+        {
+            gameOverUI50M.SetActive(true);
+        }
+    }
+
+    public void backToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+
     }
 
     void setCountText()

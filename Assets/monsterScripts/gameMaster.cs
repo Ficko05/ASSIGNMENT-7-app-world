@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class gameMaster : MonoBehaviour {
 
@@ -13,12 +14,15 @@ public class gameMaster : MonoBehaviour {
     float priceOfUpgrade = 20;
     public GameObject gameOverUI1M;
     public GameObject gameOverUI50M;
+    float clickCounterForAds;
 
     public void onclickMonster()
     {
 
         goldBank(goldMultiplyser);
         setCountText();
+        
+        
     }
 
 
@@ -38,6 +42,11 @@ public class gameMaster : MonoBehaviour {
             goldMultiplyser = goldMultiplyser * 2;
             priceOfUpgrade = priceOfUpgrade * 4;
             setCountText();
+            clickCounterForAds++;
+            if(clickCounterForAds%3 == 0){ 
+            
+                Advertisement.Show();
+            }
         } 
     }
 
@@ -69,7 +78,7 @@ public class gameMaster : MonoBehaviour {
     void setCountText()
     {
         goldText.text = "Gold x " + coins.ToString();
-        upgradeText.text = "Gold-Boost X2 \n" + "Price " + priceOfUpgrade.ToString() + " Gold";
+        upgradeText.text = "Boost x2 " + priceOfUpgrade.ToString() + "G";
     }
 }
 
